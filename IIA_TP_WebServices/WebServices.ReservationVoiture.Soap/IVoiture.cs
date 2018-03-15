@@ -4,6 +4,7 @@ using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Services.Protocols;
 
 namespace WebServices.ReservationVoiture.Soap
 {
