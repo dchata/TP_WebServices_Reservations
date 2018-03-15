@@ -43,7 +43,7 @@ namespace WebServices.ReservationVoiture.Soap
             }
 
             //Commenté car a fonctionné mais ne fonctionne plus, d'où le foreach
-            //var voitureReservee = voitures.Select(v => v.diponible == true && v.agence.id == agence && v.id == voitureId && v.dateDispoStart <= dateResaStart && v.dateDispoEnd > dateResaEnd).FirstOrDefault();
+            //var voitureReservee = voitures.Select(v => v.id == voitureId && v.agence.id == agence && v.diponible == true && v.dateDispoStart <= dateResaStart && v.dateDispoEnd > dateResaEnd).FirstOrDefault();
 
             return voitureReservee;
         }
