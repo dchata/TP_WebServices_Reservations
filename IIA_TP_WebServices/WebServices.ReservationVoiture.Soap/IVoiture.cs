@@ -5,6 +5,7 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Services.Protocols;
+using WebServices.ReservationVoiture.Soap.Messages;
 
 namespace WebServices.ReservationVoiture.Soap
 {
@@ -12,12 +13,12 @@ namespace WebServices.ReservationVoiture.Soap
     interface IVoiture
     {
         [OperationContract]
-        List<BaseVoiture> GetVoitures(DateTime dateResaStart, DateTime dateResaEnd, BaseVoiture.TypeVoiture Type, int Agence);
+        MessageResponse GetVoitures(MessageRequest messageRequest);
 
         [OperationContract]
-        BaseVoiture GetInfosVoiture(int voitureId);
+        MessageResponse GetInfosVoiture(MessageRequest messageRequest);
 
         [OperationContract]
-        bool ReserverVoiture(int agence, int voitureId, DateTime dateResaStart, DateTime dateResaEnd);
+        MessageResponse ReserverVoiture(MessageRequest messageRequest);
     }
 }
