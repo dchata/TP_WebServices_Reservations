@@ -100,6 +100,10 @@ namespace WebServices.ReservationVoiture.Soap
             listeVoitures.Add(new BaseVoiture(6, "Range Rover Evoque", true, TypeVoiture.SUV, Convert.ToDateTime("12/03/2018 00:00:00"), Convert.ToDateTime("20/03/2018 00:00:00"), agences.Where(a => a.id == 4).FirstOrDefault()));
             listeVoitures.Add(new BaseVoiture(7, "Porsche Cayenne", true, TypeVoiture.SUV, Convert.ToDateTime("12/03/2018 00:00:00"), Convert.ToDateTime("12/04/2018 00:00:00"), agences.Where(a => a.id == 5).FirstOrDefault()));
             listeVoitures.Add(new BaseVoiture(8, "Renault Twingo", false, TypeVoiture.Citadine, Convert.ToDateTime("12/03/2018 00:00:00"), Convert.ToDateTime("12/12/2018 00:00:00"), agences.Where(a => a.id == 5).FirstOrDefault()));
+            listeVoitures.Add(new BaseVoiture(9, "Citroën C4 Picasso", true, TypeVoiture.Citadine, Convert.ToDateTime("12/03/2018 00:00:00"), Convert.ToDateTime("12/03/2020 00:00:00"), agences.Where(a => a.id == 1).FirstOrDefault()));
+            listeVoitures.Add(new BaseVoiture(10, "Citroën C3", true, TypeVoiture.Citadine, Convert.ToDateTime("12/03/2018 00:00:00"), Convert.ToDateTime("12/03/2020 00:00:00"), agences.Where(a => a.id == 1).FirstOrDefault()));
+            listeVoitures.Add(new BaseVoiture(11, "Citroën C5", true, TypeVoiture.Berline, Convert.ToDateTime("12/03/2018 00:00:00"), Convert.ToDateTime("12/03/2020 00:00:00"), agences.Where(a => a.id == 1).FirstOrDefault()));
+            listeVoitures.Add(new BaseVoiture(12, "Citroën C1", true, TypeVoiture.Citadine, Convert.ToDateTime("12/03/2018 00:00:00"), Convert.ToDateTime("12/03/2020 00:00:00"), agences.Where(a => a.id == 1).FirstOrDefault()));
 
             return listeVoitures;
         }
