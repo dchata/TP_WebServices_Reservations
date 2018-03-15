@@ -11,6 +11,9 @@ namespace WebServices.ReservationVoiture.Soap.Messages
     {
         [MessageBodyMember]
         public List<BaseVoiture> ListeVoitures;
+
+        [MessageBodyMember]
+        public string message;
     }
 
     [MessageContract]
@@ -18,6 +21,8 @@ namespace WebServices.ReservationVoiture.Soap.Messages
     {
         [MessageBodyMember]
         public BaseVoiture Voiture;
+        [MessageBodyMember]
+        public string message;
     }
 
     [MessageContract]
@@ -25,5 +30,7 @@ namespace WebServices.ReservationVoiture.Soap.Messages
     {
         [MessageBodyMember]
         public bool Reservee;
+        [MessageBodyMember]
+        public string message;
     }
 }

@@ -15,48 +15,73 @@ namespace WebServices.ReservationVoiture.Soap
 
     public class Service1 : IVoiture
     {
+        private string user = "web";
+        private string pass = "services";
 
         public MessageResponse GetVoitures(MessageRequest messageRequest)
         {
             MessageResponse messageResponse = new MessageResponse();
-            if (messageRequest.Username =="web" && messageRequest.Password == "services")
+            if (messageRequest.Username == user && messageRequest.Password == pass)
             {
                 List<BaseVoiture> voitures = new List<BaseVoiture>();
                 var baseVoiture = new BaseVoiture();
                 voitures = baseVoiture.GetBaseVoitures();
                 voitures = voitures.Where(v => v.diponible == true && v.dateDispoStart <= messageRequest.DateResaStart && v.dateDispoEnd > messageRequest.DateResaEnd && v.type == messageRequest.Type && v.agence.id == messageRequest.Agence).ToList();
-                messageResponse.ListeVoitures = voitures;
+
+                if (voitures.Any())
+                    messageResponse.ListeVoitures = voitures;
+                else
+                    messageResponse.message = "Aucunes voitures ne correspondent aux paramètres saisis !";
+
             }
+            else
+                messageResponse.message = "Erreur lors de la connexion";
+
             return messageResponse;
         }
 
         public MessageResponseInfo GetInfosVoiture(MessageRequestInfo messageRequest)
         {
             MessageResponseInfo messageResponse = new MessageResponseInfo();
-            var baseVoiture = new BaseVoiture();
-            var voitures = baseVoiture.GetBaseVoitures();
-            messageResponse.Voiture= voitures.Where(v => v.id == messageRequest.VoitureId).FirstOrDefault();
+            if (messageRequest.Username == user && messageRequest.Password == pass)
+            {
+                var baseVoiture = new BaseVoiture();
+                var voitures = baseVoiture.GetBaseVoitures();
+                messageResponse.Voiture = voitures.Where(v => v.id == messageRequest.VoitureId).FirstOrDefault();
+
+                if (messageResponse.Voiture == null)
+                    messageResponse.message = "Aucune voiture ne correspond à l'id saisit !";
+            }
+            else
+                messageResponse.message = "Erreur lors de la connexion";
+
             return messageResponse;
         }
 
         public MessageResponseResa ReserverVoiture(MessageRequestResa messageRequest)
         {
             MessageResponseResa messageResponse = new MessageResponseResa();
-            var baseVoiture = new BaseVoiture();
-            var voitures = baseVoiture.GetBaseVoitures();
-            messageResponse.Reservee = false;
-
-            foreach (var item in voitures)
+            if (messageRequest.Username == user && messageRequest.Password == pass)
             {
-                if (item.diponible == true && item.agence.id == messageRequest.Agence && item.id == messageRequest.VoitureId && item.dateDispoStart <= messageRequest.DateResaStart && item.dateDispoEnd > messageRequest.DateResaEnd)
-                {
-                    messageResponse.Reservee = true;
-                    break;
-                }
-            }
+                var baseVoiture = new BaseVoiture();
+                var voitures = baseVoiture.GetBaseVoitures();
+                messageResponse.Reservee = false;
 
-            //Commenté car a fonctionné mais ne fonctionne plus, d'où le foreach
-            //var voitureReservee = voitures.Select(v => v.id == voitureId && v.agence.id == agence && v.diponible == true && v.dateDispoStart <= dateResaStart && v.dateDispoEnd > dateResaEnd).FirstOrDefault();
+                foreach (var item in voitures)
+                {
+                    if (item.diponible == true && item.agence.id == messageRequest.Agence && item.id == messageRequest.VoitureId && item.dateDispoStart <= messageRequest.DateResaStart && item.dateDispoEnd > messageRequest.DateResaEnd)
+                    {
+                        messageResponse.Reservee = true;
+                        break;
+                    }
+                }
+
+                if (messageResponse.Reservee == false)
+                    messageResponse.message = "La réservation n'a pas pu avoir lieu. Vérifiez votre saisie !";
+            }
+            else
+                messageResponse.message = "Erreur lors de la connexion";
+
             return messageResponse;
         }
     }
