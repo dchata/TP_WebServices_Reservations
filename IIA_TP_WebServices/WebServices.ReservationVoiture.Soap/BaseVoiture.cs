@@ -93,7 +93,7 @@ namespace WebServices.ReservationVoiture.Soap
             var agences = baseAgence.GetBaseAgences();
 
             listeVoitures.Add(new BaseVoiture(1, "Renault Talisman", true, TypeVoiture.Berline, Convert.ToDateTime("12/03/2018 00:00:00"), Convert.ToDateTime("15/03/2018 00:00:00"), agences.Where(a => a.id == 1).FirstOrDefault()));
-            listeVoitures.Add(new BaseVoiture(2, "Citroën C4", false, TypeVoiture.Berline, Convert.ToDateTime("12/03/2018 00:00:00"), Convert.ToDateTime("12/03/2020 00:00:00"), agences.Where(a => a.id == 1).FirstOrDefault()));
+            listeVoitures.Add(new BaseVoiture(2, "Citroën C4", true, TypeVoiture.Berline, Convert.ToDateTime("12/03/2018 00:00:00"), Convert.ToDateTime("12/03/2020 00:00:00"), agences.Where(a => a.id == 1).FirstOrDefault()));
             listeVoitures.Add(new BaseVoiture(3, "Renault Mégane RS", true, TypeVoiture.Sport, Convert.ToDateTime("12/03/2018 00:00:00"), Convert.ToDateTime("12/05/2018 00:00:00"), agences.Where(a => a.id == 2).FirstOrDefault()));
             listeVoitures.Add(new BaseVoiture(4, "Peugeot 208", true, TypeVoiture.Citadine, Convert.ToDateTime("12/03/2018 00:00:00"), Convert.ToDateTime("12/07/2018 00:00:00"), agences.Where(a => a.id == 2).FirstOrDefault()));
             listeVoitures.Add(new BaseVoiture(5, "Peugeot 308", false, TypeVoiture.Citadine, Convert.ToDateTime("12/03/2018 00:00:00"), Convert.ToDateTime("22/03/2018 00:00:00"), agences.Where(a => a.id == 4).FirstOrDefault()));
