@@ -11,8 +11,18 @@ namespace WebServices.ReservationVoiture.Soap.Messages
     {
         [MessageBodyMember]
         public List<BaseVoiture> ListeVoitures;
+    }
+
+    [MessageContract]
+    public class MessageResponseInfo
+    {
         [MessageBodyMember]
         public BaseVoiture Voiture;
+    }
+
+    [MessageContract]
+    public class MessageResponseResa
+    {
         [MessageBodyMember]
         public bool Reservee;
     }

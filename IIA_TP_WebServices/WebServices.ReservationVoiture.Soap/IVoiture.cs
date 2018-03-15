@@ -16,9 +16,9 @@ namespace WebServices.ReservationVoiture.Soap
         MessageResponse GetVoitures(MessageRequest messageRequest);
 
         [OperationContract]
-        MessageResponse GetInfosVoiture(MessageRequest messageRequest);
+        MessageResponseInfo GetInfosVoiture(MessageRequestInfo messageRequest);
 
         [OperationContract]
-        MessageResponse ReserverVoiture(MessageRequest messageRequest);
+        MessageResponseResa ReserverVoiture(MessageRequestResa messageRequest);
     }
 }

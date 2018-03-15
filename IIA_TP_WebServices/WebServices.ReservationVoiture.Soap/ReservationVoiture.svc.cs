@@ -19,8 +19,7 @@ namespace WebServices.ReservationVoiture.Soap
         public MessageResponse GetVoitures(MessageRequest messageRequest)
         {
             MessageResponse messageResponse = new MessageResponse();
-           // messageResponse.ListeVoitures = new List<BaseVoiture>();
-            if (messageRequest.Username =="test" && messageRequest.Password == "world")
+            if (messageRequest.Username =="web" && messageRequest.Password == "services")
             {
                 List<BaseVoiture> voitures = new List<BaseVoiture>();
                 var baseVoiture = new BaseVoiture();
@@ -31,18 +30,18 @@ namespace WebServices.ReservationVoiture.Soap
             return messageResponse;
         }
 
-        public MessageResponse GetInfosVoiture(MessageRequest messageRequest)
+        public MessageResponseInfo GetInfosVoiture(MessageRequestInfo messageRequest)
         {
-            MessageResponse messageResponse = new MessageResponse();
+            MessageResponseInfo messageResponse = new MessageResponseInfo();
             var baseVoiture = new BaseVoiture();
             var voitures = baseVoiture.GetBaseVoitures();
             messageResponse.Voiture= voitures.Where(v => v.id == messageRequest.VoitureId).FirstOrDefault();
             return messageResponse;
         }
 
-        public MessageResponse ReserverVoiture(MessageRequest messageRequest)
+        public MessageResponseResa ReserverVoiture(MessageRequestResa messageRequest)
         {
-            MessageResponse messageResponse = new MessageResponse();
+            MessageResponseResa messageResponse = new MessageResponseResa();
             var baseVoiture = new BaseVoiture();
             var voitures = baseVoiture.GetBaseVoitures();
             messageResponse.Reservee = false;
