@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="WebServices.ReservationVoiture.Soap.Service1" CodeBehind="ReservationVoiture.svc.cs" %>
