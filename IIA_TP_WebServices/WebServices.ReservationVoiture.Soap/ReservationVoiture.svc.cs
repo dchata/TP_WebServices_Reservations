@@ -30,7 +30,7 @@ namespace WebServices.ReservationVoiture.Soap
                 List<BaseVoiture> voitures = new List<BaseVoiture>();
                 var baseVoiture = new BaseVoiture();
                 voitures = baseVoiture.GetBaseVoitures();
-                voitures = voitures.Where(v => v.diponible == true && v.dateDispoStart <= messageRequest.DateResaStart && v.dateDispoEnd > messageRequest.DateResaEnd && v.type == messageRequest.Type && v.agence.id == messageRequest.Agence).ToList();
+                voitures = voitures.Where(v => v.diponible == true /*&& v.dateDispoStart <= messageRequest.DateResaStart && v.dateDispoEnd > messageRequest.DateResaEnd && v.type == messageRequest.Type && v.agence.id == messageRequest.Agence*/).ToList();
 
                 if (voitures.Any())
                     messageResponse.ListeVoitures = voitures;
@@ -75,7 +75,7 @@ namespace WebServices.ReservationVoiture.Soap
 
                 foreach (var item in voitures)
                 {
-                    if (item.diponible == true && item.agence.id == messageRequest.Agence && item.id == messageRequest.VoitureId && item.dateDispoStart <= messageRequest.DateResaStart && item.dateDispoEnd > messageRequest.DateResaEnd)
+                    if (item.diponible == true /*&& item.agence.id == messageRequest.Agence*/ && item.id == messageRequest.VoitureId && item.dateDispoStart <= messageRequest.DateResaStart && item.dateDispoEnd > messageRequest.DateResaEnd)
                     {
                         messageResponse.Reservee = true;
                         baseVoiture = item;
