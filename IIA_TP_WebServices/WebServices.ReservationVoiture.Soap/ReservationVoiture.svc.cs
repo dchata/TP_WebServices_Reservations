@@ -17,15 +17,15 @@ namespace WebServices.ReservationVoiture.Soap
     {
         #region Properties
         //Définit le username et le password pour pouvoir accéder aux méthodes
-        private string user = "web";
-        private string pass = "services";
         #endregion
 
         #region Methods
         public MessageResponse GetVoitures(MessageRequest messageRequest)
         {
             MessageResponse messageResponse = new MessageResponse();
-            if (messageRequest.Username == user && messageRequest.Password == pass) //Vérification des informations saisies vs infomations définies
+            BaseUtilisateur baseUser = new BaseUtilisateur();
+            List<BaseUtilisateur> listUsers = baseUser.GetBaseUtilisateur();
+            if (listUsers.Select(u => u.Username == messageRequest.Username && u.Password == messageRequest.Password).FirstOrDefault() ) //Vérification des informations saisies vs infomations définies
             {
                 List<BaseVoiture> voitures = new List<BaseVoiture>();
                 var baseVoiture = new BaseVoiture();
@@ -47,7 +47,9 @@ namespace WebServices.ReservationVoiture.Soap
         public MessageResponseInfo GetInfosVoiture(MessageRequestInfo messageRequest)
         {
             MessageResponseInfo messageResponse = new MessageResponseInfo();
-            if (messageRequest.Username == user && messageRequest.Password == pass) //Vérification des informations saisies vs infomations définies
+            BaseUtilisateur baseUser = new BaseUtilisateur();
+            List<BaseUtilisateur> listUsers = baseUser.GetBaseUtilisateur();
+            if (listUsers.Select(u => u.Username == messageRequest.Username && u.Password == messageRequest.Password).FirstOrDefault()) //Vérification des informations saisies vs infomations définies
             {
                 var baseVoiture = new BaseVoiture();
                 var voitures = baseVoiture.GetBaseVoitures();
@@ -67,7 +69,9 @@ namespace WebServices.ReservationVoiture.Soap
         public MessageResponseResa ReserverVoiture(MessageRequestResa messageRequest)
         {
             MessageResponseResa messageResponse = new MessageResponseResa();
-            if (messageRequest.Username == user && messageRequest.Password == pass) //Vérification des informations saisies vs infomations définies
+            BaseUtilisateur baseUser = new BaseUtilisateur();
+            List<BaseUtilisateur> listUsers = baseUser.GetBaseUtilisateur();
+            if (listUsers.Select(u => u.Username == messageRequest.Username && u.Password == messageRequest.Password).FirstOrDefault()) //Vérification des informations saisies vs infomations définies
             {
                 var baseVoiture = new BaseVoiture();
                 var voitures = baseVoiture.GetBaseVoitures();

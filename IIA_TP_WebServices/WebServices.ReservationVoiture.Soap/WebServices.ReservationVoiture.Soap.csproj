@@ -255,6 +255,7 @@
   <ItemGroup>
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="BaseAgence.cs" />
+    <Compile Include="BaseUtilisateur.cs" />
     <Compile Include="BaseVoiture.cs" />
     <Compile Include="IVoiture.cs" />
     <Compile Include="Messages\MessageRequest.cs" />
@@ -295,7 +296,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>53365</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://192.168.43.46:53365/</IISUrl>
+          <IISUrl>http://localhost:53365/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
