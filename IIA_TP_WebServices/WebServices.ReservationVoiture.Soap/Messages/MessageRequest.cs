@@ -6,8 +6,10 @@ using System.Web;
 
 namespace WebServices.ReservationVoiture.Soap.Messages
 {
+    //MessageHeader Username / Password nous permettent de sécuriser l'api SOAP
+
     [MessageContract]
-    public class MessageRequest
+    public class MessageRequest //Les champs requis pour la méthodes lister les voitures
     {
         [MessageHeader]
         public string Username;
@@ -24,7 +26,7 @@ namespace WebServices.ReservationVoiture.Soap.Messages
     }
 
     [MessageContract]
-    public class MessageRequestResa
+    public class MessageRequestResa //Les champs requis pour la méthode de réservations
     {
         [MessageHeader]
         public string Username;
@@ -43,7 +45,7 @@ namespace WebServices.ReservationVoiture.Soap.Messages
     }
 
     [MessageContract]
-    public class MessageRequestInfo
+    public class MessageRequestInfo //Les champs requis pour la méthode de récupération des infos sur une voiture
     {
         [MessageHeader]
         public string Username;

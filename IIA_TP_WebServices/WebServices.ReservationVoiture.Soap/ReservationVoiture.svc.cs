@@ -15,13 +15,17 @@ namespace WebServices.ReservationVoiture.Soap
 
     public class Service1 : IVoiture
     {
+        #region Properties
+        //Définit le username et le password pour pouvoir accéder aux méthodes
         private string user = "web";
         private string pass = "services";
+        #endregion
 
+        #region Methods
         public MessageResponse GetVoitures(MessageRequest messageRequest)
         {
             MessageResponse messageResponse = new MessageResponse();
-            if (messageRequest.Username == user && messageRequest.Password == pass)
+            if (messageRequest.Username == user && messageRequest.Password == pass) //Vérification des informations saisies vs infomations définies
             {
                 List<BaseVoiture> voitures = new List<BaseVoiture>();
                 var baseVoiture = new BaseVoiture();
@@ -37,13 +41,13 @@ namespace WebServices.ReservationVoiture.Soap
             else
                 messageResponse.message = "Erreur lors de la connexion";
 
-            return messageResponse;
+            return messageResponse; // Retourne une instance de la classe MessageResponse qui contient une liste de voitures
         }
 
         public MessageResponseInfo GetInfosVoiture(MessageRequestInfo messageRequest)
         {
             MessageResponseInfo messageResponse = new MessageResponseInfo();
-            if (messageRequest.Username == user && messageRequest.Password == pass)
+            if (messageRequest.Username == user && messageRequest.Password == pass) //Vérification des informations saisies vs infomations définies
             {
                 var baseVoiture = new BaseVoiture();
                 var voitures = baseVoiture.GetBaseVoitures();
@@ -51,17 +55,19 @@ namespace WebServices.ReservationVoiture.Soap
 
                 if (messageResponse.Voiture == null)
                     messageResponse.message = "Aucune voiture ne correspond à l'id saisit !";
+                else
+                    messageResponse.message = "Connexion OK";
             }
             else
                 messageResponse.message = "Erreur lors de la connexion";
 
-            return messageResponse;
+            return messageResponse; // Retourne une instance de la classe MessageResponseInfo qui contient une voiture avec toutes ses informations
         }
 
         public MessageResponseResa ReserverVoiture(MessageRequestResa messageRequest)
         {
             MessageResponseResa messageResponse = new MessageResponseResa();
-            if (messageRequest.Username == user && messageRequest.Password == pass)
+            if (messageRequest.Username == user && messageRequest.Password == pass) //Vérification des informations saisies vs infomations définies
             {
                 var baseVoiture = new BaseVoiture();
                 var voitures = baseVoiture.GetBaseVoitures();
@@ -72,17 +78,21 @@ namespace WebServices.ReservationVoiture.Soap
                     if (item.diponible == true && item.agence.id == messageRequest.Agence && item.id == messageRequest.VoitureId && item.dateDispoStart <= messageRequest.DateResaStart && item.dateDispoEnd > messageRequest.DateResaEnd)
                     {
                         messageResponse.Reservee = true;
+                        baseVoiture = item;
                         break;
                     }
                 }
 
                 if (messageResponse.Reservee == false)
                     messageResponse.message = "La réservation n'a pas pu avoir lieu. Vérifiez votre saisie !";
+                else
+                    messageResponse.message = $"Vous avez réservé la {baseVoiture.modele} pour les dates du {messageRequest.DateResaStart.ToShortDateString()} au {messageRequest.DateResaEnd.ToShortDateString()}";
             }
             else
                 messageResponse.message = "Erreur lors de la connexion";
 
-            return messageResponse;
+            return messageResponse; // Retourne une instance de la classe MessageResponseResa qui contient un boolean pour dire si la voiture a été reservée ou non
         }
+        #endregion
     }
 }

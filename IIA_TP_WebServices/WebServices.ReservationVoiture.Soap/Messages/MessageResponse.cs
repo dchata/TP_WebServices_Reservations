@@ -7,7 +7,7 @@ using System.Web;
 namespace WebServices.ReservationVoiture.Soap.Messages
 {
     [MessageContract]
-    public class MessageResponse
+    public class MessageResponse //Les champs qui sont retournés suite à l'appel de la méthode de récupérations de voitures
     {
         [MessageBodyMember]
         public List<BaseVoiture> ListeVoitures;
@@ -17,7 +17,7 @@ namespace WebServices.ReservationVoiture.Soap.Messages
     }
 
     [MessageContract]
-    public class MessageResponseInfo
+    public class MessageResponseInfo //Les champs retournés suite à une demande d'informations sur une voiture
     {
         [MessageBodyMember]
         public BaseVoiture Voiture;
@@ -26,7 +26,7 @@ namespace WebServices.ReservationVoiture.Soap.Messages
     }
 
     [MessageContract]
-    public class MessageResponseResa
+    public class MessageResponseResa //Les champs retourné suite à une demande de réservation sur une voiture
     {
         [MessageBodyMember]
         public bool Reservee;

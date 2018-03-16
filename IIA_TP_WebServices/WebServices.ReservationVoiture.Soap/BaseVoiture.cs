@@ -5,7 +5,7 @@ using System.Web;
 
 namespace WebServices.ReservationVoiture.Soap
 {
-    public class BaseVoiture
+    public class BaseVoiture //Notre "table de base de données" Voiture
     {
         #region Properties
         private int Id;
