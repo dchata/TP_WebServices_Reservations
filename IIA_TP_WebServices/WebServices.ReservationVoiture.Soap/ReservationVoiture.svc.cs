@@ -13,7 +13,7 @@ using WebServices.ReservationVoiture.Soap.Messages;
 namespace WebServices.ReservationVoiture.Soap
 {
 
-    public class Service1 : IVoiture
+    public class CarService : IVoiture
     {
         #region Properties
         //Définit le username et le password pour pouvoir accéder aux méthodes
