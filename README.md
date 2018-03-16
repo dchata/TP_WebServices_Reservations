@@ -3,9 +3,9 @@
 Cette API est en SOAP et a été développée en C#
 
 Elle est composée de 3 méthodes :
-- Récupération d'une liste de voitures disponibles
-- Récupération des informations sur une voiture avec son id
-- Réservation d'une voiture avec son id et des dates précises
+- GetVoitures(username, password) : renvoie une liste de voitures disponibles
+- GetInfosVoiture(username, password, voitureId) : renvoie une voiture avec ses informations 
+- ReserverVoiture(username, password, voitureId, dateResaStart, dateResaEnd) : renvoie un boolean si voiture réservée ou non
 
 Pour chaque méthode il faut saisir des identifiants :
 
