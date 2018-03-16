@@ -15,14 +15,14 @@ namespace WebServices.ReservationVoiture.Soap.Messages
         public string Username;
         [MessageHeader]
         public string Password;
-        [MessageBodyMember]
+        /*[MessageBodyMember]
         public DateTime DateResaStart;
         [MessageBodyMember]
         public DateTime DateResaEnd;
         [MessageBodyMember]
         public BaseVoiture.TypeVoiture Type;
         [MessageBodyMember]
-        public int Agence;
+        public int Agence;*/
     }
 
     [MessageContract]
@@ -36,10 +36,10 @@ namespace WebServices.ReservationVoiture.Soap.Messages
         public DateTime DateResaStart;
         [MessageBodyMember]
         public DateTime DateResaEnd;
-        [MessageBodyMember]
+        /*[MessageBodyMember]
         public BaseVoiture.TypeVoiture Type;
         [MessageBodyMember]
-        public int Agence;
+        public int Agence;*/
         [MessageBodyMember]
         public int VoitureId;
     }
