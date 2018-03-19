@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Agregation.ReservationHotel;
 using Agregation.ReservationVoiture;
 using Agregation.ReservationVol;
 using Microsoft.AspNetCore.Http;
@@ -139,9 +140,11 @@ namespace Agregation.Controllers
         }
 
         [Route("hotel/booking")]
-        public object call_ReserverHotel_ws()
+        public object call_ReserverHotel_ws(int hotelId,DateTime date)
         {
-            return false;
+            HostelService_FaFlo service = new HostelService_FaFlo();
+            var response = service.ReservationHotel(hotelId,date);
+            return response;
         }
 
         [Route("hotel2/list")]

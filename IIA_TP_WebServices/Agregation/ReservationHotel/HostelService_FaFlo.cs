@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,25 @@ namespace Agregation.ReservationHotel
             var response = JArray.Parse(myRestResponse.Content).ToString();
 
             return response;
+        }
+
+        public string ReservationHotel(int hotelId, DateTime date)
+        {
+            //grant_type=client_credentials& &scope=account
+            /*RestRequest myTokenRequest = new RestRequest("login", Method.POST);
+            string info = JsonConvert.SerializeObject();
+            myTokenRequest.AddParameter("application/x-www-form-urlencoded", info, ParameterType.RequestBody);
+            
+            IRestResponse myTokenResponse = myRestClient.Execute(myTokenRequest);
+            Token myToken = JsonConvert.DeserializeObject<Token>(myTokenResponse.Content);
+
+            RestRequest myRestRequest = new RestRequest($"reservations?hotelId={hotelId}&date={date}", Method.POST);
+            IRestResponse myRestResponse = myRestClient.Execute(myRestRequest);
+            var response = String.Format(myRestResponse.Content+myTokenResponse.Content);
+
+            return response;*/
+            
+            return "Methode non terminée";
         }
     }
 }
