@@ -26,13 +26,14 @@ namespace Agregation.Controllers
                         "\n Réservation voiture 2 : /car2/booking?" +
                         //Vols
                         "\n\n Liste de vols : /vol/list?allFlights=bool&start=Annee-Mois-Jour&end=Annee-Mois-Jour" +
+                        "\n Détails d'un vol : /vol/details?vol=int" +
                         "\n Réservation vol : /vol/booking" +
-                        "\n\n Liste de vols 2 : /vol/list ? " +
-                        "\n Réservation vol 2 : /vol/booking" +
+                        "\n\n Liste de vols 2 : /vol2/list? " +
+                        "\n Réservation vol 2 : /vol2/booking" +
                         //Hôtels
                         "\n\n Liste d'hôtels : /hotel/list?" +
                         "\n Réservation hôtels : /hotel/booking" +
-                        "\n\n Liste d'hôtels 2 : /hotel2/list ? " +
+                        "\n\n Liste d'hôtels 2 : /hotel2/list? " +
                         "\n Réservation hôtels 2 : /hotel2/booking";
 
             return value;
@@ -49,7 +50,15 @@ namespace Agregation.Controllers
                 request.Username = user;
                 request.Password = pass;
                 MessageResponse response = service.GetListeVoitures(request);
-                return response.ListeVoitures;
+
+                var content = "";
+
+                foreach (var item in response.ListeVoitures)
+                {
+                    content += $"{item.id}-{item.modele}\n";
+                }
+
+                return content;
             }
             else
                 return "Merci de saisir un identifiant et un mot de passe";
@@ -66,7 +75,13 @@ namespace Agregation.Controllers
                 request.Password = pass;
                 request.VoitureId = voitureId;
                 MessageResponseInfo response = service.GetVoiture(request);
-                return response.Voiture;
+
+                var infos = $"Modèle : {response.Voiture.modele} \n" +
+                            $"Agence : {response.Voiture.agence.nom} \n" +
+                            $"Date de dispo début : {response.Voiture.dateDispoStart.ToShortDateString()} \n" +
+                            $"Date de dispo fin : {response.Voiture.dateDispoEnd.ToShortDateString()} \n";
+
+                return infos;
             }
             else
                 return "Merci de saisir un identifiant et un mot de passe";
@@ -85,7 +100,10 @@ namespace Agregation.Controllers
                 request.DateResaEnd = DateTime.Parse(dateResaEnd);
                 request.VoitureId = voitureId;
                 MessageResponseResa response = service.BookingVoiture(request);
-                return response.Reservee;
+
+                var reservation = $"{response.message}";
+
+                return reservation;
             }
             else
                 return "Merci de saisir un identifiant et un mot de passe";
@@ -110,6 +128,14 @@ namespace Agregation.Controllers
         {
             FlyService_DoJM service = new FlyService_DoJM();
             var response = service.GetVols(allFlights, DateTime.Parse(start), DateTime.Parse(end));
+            return response;
+        }
+
+        [Route("vol/details")]
+        public object call_DetailsVol_ws(int vol)
+        {
+            FlyService_DoJM service = new FlyService_DoJM();
+            var response = service.GetDetails(vol);
             return response;
         }
 
