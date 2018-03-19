@@ -97,7 +97,7 @@ namespace WebServices.ReservationVoiture.Soap
                 }
 
                 if (messageResponse.Reservee == false)
-                    messageResponse.message = "La réservation n'a pas pu avoir lieu. Vérifiez votre saisie !";
+                    messageResponse.message = "La réservation n'a pas pu avoir lieu. Vérifiez les dates ou l'id de la voiture !";
                 else
                     messageResponse.message = $"Vous avez réservé la {baseVoiture.modele} pour les dates du {messageRequest.DateResaStart.ToShortDateString()} au {messageRequest.DateResaEnd.ToShortDateString()}";
             }
