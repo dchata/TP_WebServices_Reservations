@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ReservationHotel\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

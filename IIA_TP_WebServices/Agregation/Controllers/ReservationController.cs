@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Agregation.ReservationHotel;
 using Agregation.ReservationVoiture;
 using Agregation.ReservationVol;
 using Microsoft.AspNetCore.Http;
@@ -21,14 +22,15 @@ namespace Agregation.Controllers
         {
             var value = " Liste de voitures : /car/list?user=string&pass=string" +
                         "\n Infos voiture : /car/infos?user=string&pass=string&voitureId=int " +
-                        "\n Réservation voiture : /car/booking?user=string&pass=string&dateResaStart=YYY-MM-DD&dateResaEnd=YYY-MM-DD&voitureId=int" +
+                        "\n Réservation voiture : /car/booking?user=string&pass=string&dateResaStart=YYYY-MM-DD&dateResaEnd=YYYY-MM-DD&voitureId=int" +
                         //Vols
-                        "\n\n Liste de vols : /vol/list?allFlights=bool&start=YYY-MM-DD&end=YYY-MM-DD" +
+                        "\n\n Liste de vols : /vol/list?allFlights=bool&start=YYYY-MM-DD&end=YYY-MM-DD" +
                         "\n Détails d'un vol : /vol/details?vol=int" +
                         "\n Réservation vol : /vol/booking?idBooking=int&lastName=string&firstName=string&places=int" +
                         //Hôtels
-                        "\n\n Liste d'hôtels : /hotel/list?dateDebut=YYY-MM-DD&dateFin=YYY-MM-DD" +
-                        "\n\n Détails d'un hôtel : /hotel/details?" +
+                        "\n\n Liste d'hôtels : /hotel/list?dateDebut=YYYY-MM-DD&dateFin=YYYY-MM-DD" +
+                        "\n Détails d'un hôtel : /hotel/details?hotel=int" +
+                        "\n Liste des réservation d'un hôtel : /hotel/reservationsListe?hotel=int&dateResa=YYYY-MM-DD" +
                         "\n Réservation hôtels : /hotel/booking";
 
             return value;
@@ -133,25 +135,33 @@ namespace Agregation.Controllers
 
         #region Réservation d'hôtels
         [Route("hotel/list")]
-        public object call_GetHotels_ws()
+        public object call_GetHotels_ws(string dateDebut, string dateFin)
         {
+            HostelService_FaFlo service = new HostelService_FaFlo();
+            var response = service.GetHotels(DateTime.Parse(dateDebut), DateTime.Parse(dateFin));
+            return response;
+        }
+
+        [Route("hotel/details")]
+        public object call_DetailsHotels_ws(int hotel)
+        {
+            HostelService_FaFlo service = new HostelService_FaFlo();
+            var response = service.GetDetails(hotel);
+            return response;
+        }
+
+        [Route("hotel/reservationsListe")]
+        public object call_ReservationsHotels_ws(int hotel, string dateResa)
+        {
+            //HostelService_FaFlo service = new HostelService_FaFlo();
+            //var response = service.GetDetails(hotel);
+            //return response;
+
             return false;
         }
 
         [Route("hotel/booking")]
         public object call_ReserverHotel_ws()
-        {
-            return false;
-        }
-
-        [Route("hotel2/list")]
-        public object call_GetHotel2_ws()
-        {
-            return false;
-        }
-
-        [Route("hotel2/booking")]
-        public object call_ReserverHotel2_ws()
         {
             return false;
         }
