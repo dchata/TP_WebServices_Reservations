@@ -36,9 +36,8 @@ namespace WebServices.ReservationVoiture.Soap
             if (users.Select(u => u.Username == messageRequest.Username && u.Password == messageRequest.Password).FirstOrDefault() ) //Vérification des informations saisies vs infomations définies
             {
                 List<BaseVoiture> voitures = new List<BaseVoiture>();
-                //var baseVoiture = new BaseVoiture();
                 voitures = BaseVoitures.ListeVoiture;
-                voitures = voitures.Where(v => v.diponible == true /*&& v.dateDispoStart <= messageRequest.DateResaStart && v.dateDispoEnd > messageRequest.DateResaEnd && v.type == messageRequest.Type && v.agence.id == messageRequest.Agence*/).ToList();
+                voitures = voitures.Where(v => v.diponible == true).ToList();
 
                 if (voitures.Any())
                     messageResponse.ListeVoitures = voitures;
@@ -88,7 +87,7 @@ namespace WebServices.ReservationVoiture.Soap
 
                 foreach (var item in voitures)
                 {
-                    if (item.diponible == true /*&& item.agence.id == messageRequest.Agence*/ && item.id == messageRequest.VoitureId && item.dateDispoStart <= messageRequest.DateResaStart && item.dateDispoEnd > messageRequest.DateResaEnd)
+                    if (item.diponible == true && item.id == messageRequest.VoitureId && item.dateDispoStart <= messageRequest.DateResaStart && item.dateDispoEnd > messageRequest.DateResaEnd)
                     {
                         messageResponse.Reservee = true;
                         baseVoiture = item;

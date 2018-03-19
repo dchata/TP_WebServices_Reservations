@@ -40,6 +40,11 @@ namespace WebServices.ReservationVoiture.Soap
         #endregion
 
         #region Constructor
+        public Reservation()
+        {
+
+        }
+
         public Reservation(int idVoiture, string user, DateTime dateResaStart, DateTime dateResaEnd)
         {
             User = user;
