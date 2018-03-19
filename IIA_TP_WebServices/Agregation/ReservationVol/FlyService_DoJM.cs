@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebServices.ReservationVoiture.Soap.Messages;
 
 namespace Agregation.ReservationVol
 {
@@ -15,10 +16,13 @@ namespace Agregation.ReservationVol
         }
 
         //Liste de vols
-        public string GetVols()
+        public string GetVols(bool allFlights, DateTime start, DateTime end)
         {
-            RestRequest myRestRequest = new RestRequest("api/flight/", Method.GET);
-
+            RestRequest myRestRequest = new RestRequest("api/flight", Method.GET);
+            myRestRequest.AddParameter("allFlights", allFlights);
+            myRestRequest.AddParameter("start", start);
+            myRestRequest.AddParameter("end", end);
+            
             return "";
         }
 

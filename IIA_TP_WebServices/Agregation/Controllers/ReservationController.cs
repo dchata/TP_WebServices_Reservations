@@ -25,7 +25,7 @@ namespace Agregation.Controllers
                         "\n\n Liste de voitures 2 : /car2/list?" +
                         "\n Réservation voiture 2 : /car2/booking?" +
                         //Vols
-                        "\n\n Liste de vols : /vol/list?" +
+                        "\n\n Liste de vols : /vol/list?allFlights=bool&start=X&end=Y" +
                         "\n Réservation vol : /vol/booking" +
                         "\n\n Liste de vols 2 : /vol/list ? " +
                         "\n Réservation vol 2 : /vol/booking" +
@@ -102,15 +102,14 @@ namespace Agregation.Controllers
         {
             return false;
         }
-
         #endregion
 
         #region Réservation de vols
         [Route("vol/list")]
-        public object call_GetVols_ws()
+        public object call_GetVols_ws(bool allFlights, string start, string end)
         {
             FlyService_DoJM service = new FlyService_DoJM();
-            
+            service.GetVols(allFlights, DateTime.Parse(start), DateTime.Parse(end));
             return false;
         }
 
