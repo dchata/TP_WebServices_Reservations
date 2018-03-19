@@ -21,20 +21,15 @@ namespace Agregation.Controllers
         {
             var value = " Liste de voitures : /car/list?user=string&pass=string" +
                         "\n Infos voiture : /car/infos?user=string&pass=string&voitureId=int " +
-                        "\n Réservation voiture : /car/booking?user=string&pass=string&dateResaStart=Annee-Mois-Jour&dateResaEnd=Annee-Mois-Jour&voitureId=int" +
-                        "\n\n Liste de voitures 2 : /car2/list?" +
-                        "\n Réservation voiture 2 : /car2/booking?" +
+                        "\n Réservation voiture : /car/booking?user=string&pass=string&dateResaStart=YYY-MM-DD&dateResaEnd=YYY-MM-DD&voitureId=int" +
                         //Vols
-                        "\n\n Liste de vols : /vol/list?allFlights=bool&start=Annee-Mois-Jour&end=Annee-Mois-Jour" +
+                        "\n\n Liste de vols : /vol/list?allFlights=bool&start=YYY-MM-DD&end=YYY-MM-DD" +
                         "\n Détails d'un vol : /vol/details?vol=int" +
                         "\n Réservation vol : /vol/booking?idBooking=int&lastName=string&firstName=string&places=int" +
-                        "\n\n Liste de vols 2 : /vol2/list? " +
-                        "\n Réservation vol 2 : /vol2/booking" +
                         //Hôtels
-                        "\n\n Liste d'hôtels : /hotel/list?" +
-                        "\n Réservation hôtels : /hotel/booking" +
-                        "\n\n Liste d'hôtels 2 : /hotel2/list? " +
-                        "\n Réservation hôtels 2 : /hotel2/booking";
+                        "\n\n Liste d'hôtels : /hotel/list?dateDebut=YYY-MM-DD&dateFin=YYY-MM-DD" +
+                        "\n\n Détails d'un hôtel : /hotel/details?" +
+                        "\n Réservation hôtels : /hotel/booking";
 
             return value;
         }
@@ -108,18 +103,6 @@ namespace Agregation.Controllers
             else
                 return "Merci de saisir un identifiant et un mot de passe";
         }
-
-        [Route("car2/list")]
-        public object call_GetVoitures2_ws()
-        {
-            return false;
-        }
-
-        [Route("car2/booking")]
-        public object call_ReserverVoitures2_ws()
-        {
-            return false;
-        }
         #endregion
 
         #region Réservation de vols
@@ -145,18 +128,6 @@ namespace Agregation.Controllers
             FlyService_DoJM service = new FlyService_DoJM();
             var response = service.ReservationVol(idBooking ,lastName,firstName,places);
             return response;
-        }
-
-        [Route("vol2/list")]
-        public object call_GetVols2_ws()
-        {
-            return false;
-        }
-
-        [Route("vol2/booking")]
-        public object call_ReserverVols2_ws()
-        {
-            return false;
         }
         #endregion
 
