@@ -154,10 +154,10 @@ namespace Agregation.Controllers
         public object call_ReservationsHotels_ws(int hotel, string dateResa)
         {
             //HostelService_FaFlo service = new HostelService_FaFlo();
-            //var response = service.GetDetails(hotel);
+            //var response = service.GetReservations(hotel, dateResa);
             //return response;
 
-            return false;
+            return "Méthode non terminée";
         }
 
         [Route("hotel/booking")]

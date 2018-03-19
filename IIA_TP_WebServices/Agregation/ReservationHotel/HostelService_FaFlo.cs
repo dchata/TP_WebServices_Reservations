@@ -39,5 +39,17 @@ namespace Agregation.ReservationHotel
 
             return response;
         }
+
+        //Détail d'un hôtel
+        public string GetReservations(int hotelId, DateTime date)
+        {
+            RestRequest myRestRequest = new RestRequest($"reservations?hotelId={hotelId}&date={date.ToString("yyyy-MM-dd")}", Method.GET);
+
+            IRestResponse myRestResponse = myRestClient.Execute(myRestRequest);
+
+            var response = myRestResponse.Content.ToString();
+
+            return response;
+        }
     }
 }
