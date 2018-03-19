@@ -16,7 +16,15 @@ namespace WebServices.ReservationVoiture.Soap
     public class CarService : IVoiture
     {
         #region Properties
-        //Définit le username et le password pour pouvoir accéder aux méthodes
+        private BaseVoiture _BaseVoitures = new BaseVoiture(true);
+        #endregion
+
+        #region Accesseur
+        public BaseVoiture BaseVoitures
+        {
+            get { return _BaseVoitures; }
+            set { _BaseVoitures = value; }
+        }
         #endregion
 
         #region Methods
@@ -28,8 +36,8 @@ namespace WebServices.ReservationVoiture.Soap
             if (users.Select(u => u.Username == messageRequest.Username && u.Password == messageRequest.Password).FirstOrDefault() ) //Vérification des informations saisies vs infomations définies
             {
                 List<BaseVoiture> voitures = new List<BaseVoiture>();
-                var baseVoiture = new BaseVoiture();
-                voitures = baseVoiture.GetBaseVoitures();
+                //var baseVoiture = new BaseVoiture();
+                voitures = BaseVoitures.ListeVoiture;
                 voitures = voitures.Where(v => v.diponible == true /*&& v.dateDispoStart <= messageRequest.DateResaStart && v.dateDispoEnd > messageRequest.DateResaEnd && v.type == messageRequest.Type && v.agence.id == messageRequest.Agence*/).ToList();
 
                 if (voitures.Any())
@@ -47,12 +55,13 @@ namespace WebServices.ReservationVoiture.Soap
         public MessageResponseInfo GetInfosVoiture(MessageRequestInfo messageRequest)
         {
             MessageResponseInfo messageResponse = new MessageResponseInfo();
+
             BaseUtilisateur user = new BaseUtilisateur();
             List<BaseUtilisateur> users = user.GetBaseUtilisateur();
             if (users.Select(u => u.Username == messageRequest.Username && u.Password == messageRequest.Password).FirstOrDefault()) //Vérification des informations saisies vs infomations définies
-            { 
-                var baseVoiture = new BaseVoiture();
-                var voitures = baseVoiture.GetBaseVoitures();
+            {
+             
+                var voitures = BaseVoitures.ListeVoiture;
                 messageResponse.Voiture = voitures.Where(v => v.id == messageRequest.VoitureId).FirstOrDefault();
 
                 if (messageResponse.Voiture == null)
@@ -74,7 +83,7 @@ namespace WebServices.ReservationVoiture.Soap
             if (users.Select(u => u.Username == messageRequest.Username && u.Password == messageRequest.Password).FirstOrDefault()) //Vérification des informations saisies vs infomations définies
             {
                 var baseVoiture = new BaseVoiture();
-                var voitures = baseVoiture.GetBaseVoitures();
+                var voitures = BaseVoitures.ListeVoiture;
                 messageResponse.Reservee = false;
 
                 foreach (var item in voitures)
@@ -83,6 +92,7 @@ namespace WebServices.ReservationVoiture.Soap
                     {
                         messageResponse.Reservee = true;
                         baseVoiture = item;
+                        Reservation reservation = new Reservation(item.id, messageRequest.Username, messageRequest.DateResaStart, messageRequest.DateResaEnd);
                         break;
                     }
                 }
