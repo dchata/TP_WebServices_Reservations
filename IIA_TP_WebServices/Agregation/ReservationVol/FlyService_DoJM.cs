@@ -9,7 +9,7 @@ namespace Agregation.ReservationVol
 {
     public class FlyService_DoJM
     {
-        RestClient myRestClient = new RestClient("http://192.168.43.226:8082/");
+        RestClient myRestClient = new RestClient("http://192.168.234.4:8082/");
 
         public FlyService_DoJM()
         {
@@ -22,8 +22,12 @@ namespace Agregation.ReservationVol
             myRestRequest.AddParameter("allFlights", allFlights);
             myRestRequest.AddParameter("start", start);
             myRestRequest.AddParameter("end", end);
-            
-            return "";
+
+            IRestResponse myRestResponse = myRestClient.Execute(myRestRequest);
+
+            var response = String.Format("(Flux retourné) : {0}", myRestResponse.Content);
+
+            return response;
         }
 
 

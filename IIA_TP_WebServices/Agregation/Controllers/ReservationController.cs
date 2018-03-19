@@ -19,13 +19,13 @@ namespace Agregation.Controllers
         [HttpGet]
         public string Get()
         {
-            var value = " Liste de voitures : /car/list?user=X&pass=Y " +
-                        "\n Infos voiture : /car/infos?user=X&pass=Y&voitureId=Z " +
-                        "\n Réservation voiture : /car/booking?user=X&pass=Y&dateResaStart=A&dateResaEnd=B&voitureId=C" +
+            var value = " Liste de voitures : /car/list?user=string&pass=string" +
+                        "\n Infos voiture : /car/infos?user=string&pass=string&voitureId=int " +
+                        "\n Réservation voiture : /car/booking?user=string&pass=string&dateResaStart=Annee-Mois-Jour&dateResaEnd=Annee-Mois-Jour&voitureId=int" +
                         "\n\n Liste de voitures 2 : /car2/list?" +
                         "\n Réservation voiture 2 : /car2/booking?" +
                         //Vols
-                        "\n\n Liste de vols : /vol/list?allFlights=bool&start=X&end=Y" +
+                        "\n\n Liste de vols : /vol/list?allFlights=bool&start=Annee-Mois-Jour&end=Annee-Mois-Jour" +
                         "\n Réservation vol : /vol/booking" +
                         "\n\n Liste de vols 2 : /vol/list ? " +
                         "\n Réservation vol 2 : /vol/booking" +
@@ -109,8 +109,8 @@ namespace Agregation.Controllers
         public object call_GetVols_ws(bool allFlights, string start, string end)
         {
             FlyService_DoJM service = new FlyService_DoJM();
-            service.GetVols(allFlights, DateTime.Parse(start), DateTime.Parse(end));
-            return false;
+            var response = service.GetVols(allFlights, DateTime.Parse(start), DateTime.Parse(end));
+            return response;
         }
 
         [Route("vol/booking")]
