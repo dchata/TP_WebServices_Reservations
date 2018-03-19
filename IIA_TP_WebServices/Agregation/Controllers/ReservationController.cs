@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Agregation.ReservationVoiture;
+using Agregation.ReservationVol;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebServices.ReservationVoiture.Soap;
@@ -18,16 +19,28 @@ namespace Agregation.Controllers
         [HttpGet]
         public string Get()
         {
-            var value = " Liste de voiture : /car/list?user=X&pass=Y " +
+            var value = " Liste de voitures : /car/list?user=X&pass=Y " +
                         "\n Infos voiture : /car/infos?user=X&pass=Y&voitureId=Z " +
-                        "\n Réservation voiture : /car/booking?user=X&pass=Y&dateResaStart=A&dateResaEnd=B&voitureId=C";
+                        "\n Réservation voiture : /car/booking?user=X&pass=Y&dateResaStart=A&dateResaEnd=B&voitureId=C" +
+                        "\n\n Liste de voitures 2 : /car2/list?" +
+                        "\n Réservation voiture 2 : /car2/booking?" +
+                        //Vols
+                        "\n\n Liste de vols : /vol/list?" +
+                        "\n Réservation vol : /vol/booking" +
+                        "\n\n Liste de vols 2 : /vol/list ? " +
+                        "\n Réservation vol 2 : /vol/booking" +
+                        //Hôtels
+                        "\n\n Liste d'hôtels : /hotel/list?" +
+                        "\n Réservation hôtels : /hotel/booking" +
+                        "\n\n Liste d'hôtels 2 : /hotel2/list ? " +
+                        "\n Réservation hôtels 2 : /hotel2/booking";
 
             return value;
         }
 
         #region Réservation de voitures
         [Route("car/list")]
-        public List<BaseVoiture> call_GetVoitures_ws(string user, string pass)
+        public object call_GetVoitures_ws(string user, string pass)
         {
             if (user != null && pass != null)
             {
@@ -39,11 +52,11 @@ namespace Agregation.Controllers
                 return response.ListeVoitures;
             }
             else
-                return new List<BaseVoiture>();
+                return "Merci de saisir un identifiant et un mot de passe";
         }
 
         [Route("car/infos")]
-        public BaseVoiture call_GetInfosVoiture_ws(string user, string pass, int voitureId)
+        public object call_GetInfosVoiture_ws(string user, string pass, int voitureId)
         {
             if (user != null && pass != null)
             {
@@ -56,10 +69,11 @@ namespace Agregation.Controllers
                 return response.Voiture;
             }
             else
-                return new BaseVoiture();
+                return "Merci de saisir un identifiant et un mot de passe";
         }
+
         [Route("car/booking")]
-        public bool call_ReserverVoiture_ws(string user, string pass, string dateResaStart, string dateResaEnd, int voitureId)
+        public object call_ReserverVoiture_ws(string user, string pass, string dateResaStart, string dateResaEnd, int voitureId)
         {
             if (user != null && pass != null)
             {
@@ -74,7 +88,74 @@ namespace Agregation.Controllers
                 return response.Reservee;
             }
             else
-                return false;
+                return "Merci de saisir un identifiant et un mot de passe";
+        }
+
+        [Route("car2/list")]
+        public object call_GetVoitures2_ws()
+        {
+            return false;
+        }
+
+        [Route("car2/booking")]
+        public object call_ReserverVoitures2_ws()
+        {
+            return false;
+        }
+
+        #endregion
+
+        #region Réservation de vols
+        [Route("vol/list")]
+        public object call_GetVols_ws()
+        {
+            FlyService_DoJM service = new FlyService_DoJM();
+            
+            return false;
+        }
+
+        [Route("vol/booking")]
+        public object call_ReserverVols_ws()
+        {
+            return false;
+        }
+
+        [Route("vol2/list")]
+        public object call_GetVols2_ws()
+        {
+            return false;
+        }
+
+        [Route("vol2/booking")]
+        public object call_ReserverVols2_ws()
+        {
+            return false;
+        }
+        #endregion
+
+        #region Réservation d'hôtels
+        [Route("hotel/list")]
+        public object call_GetHotels_ws()
+        {
+            return false;
+        }
+
+        [Route("hotel/booking")]
+        public object call_ReserverHotel_ws()
+        {
+            return false;
+        }
+
+        [Route("hotel2/list")]
+        public object call_GetHotel2_ws()
+        {
+            return false;
+        }
+
+        [Route("hotel2/booking")]
+        public object call_ReserverHotel2_ws()
+        {
+            return false;
         }
         #endregion
     }

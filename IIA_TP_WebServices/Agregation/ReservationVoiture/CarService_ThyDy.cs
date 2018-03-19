@@ -13,18 +13,21 @@ namespace Agregation.ReservationVoiture
         {
         }
 
+        //Liste de voitures disponibles
         public MessageResponse GetListeVoitures(MessageRequest request)
         {
             CarService svc_car = new CarService();
             return svc_car.GetVoitures(request);
         }
 
+        //Informations sur une voiture
         public MessageResponseInfo GetVoiture(MessageRequestInfo request)
         {
             CarService svc_car = new CarService();
             return svc_car.GetInfosVoiture(request);
         }
 
+        //Réservation d'une voiture
         public MessageResponseResa BookingVoiture(MessageRequestResa request)
         {
             CarService svc_car = new CarService();
