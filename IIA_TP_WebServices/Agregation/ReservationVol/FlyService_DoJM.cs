@@ -58,7 +58,7 @@ namespace Agregation.ReservationVol
            
             IRestResponse myRestResponse = myRestClient.Execute(myRestRequest);
 
-            var response = String.Format("(Numéro de réservation) : {0}", myRestResponse.Content);
+            var response = String.Format("Numéro de réservation : {0}", myRestResponse.Content);
            
             return response;
         }

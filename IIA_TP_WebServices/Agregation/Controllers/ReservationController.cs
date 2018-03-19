@@ -27,7 +27,7 @@ namespace Agregation.Controllers
                         //Vols
                         "\n\n Liste de vols : /vol/list?allFlights=bool&start=Annee-Mois-Jour&end=Annee-Mois-Jour" +
                         "\n Détails d'un vol : /vol/details?vol=int" +
-                        "\n Réservation vol : /vol/booking" +
+                        "\n Réservation vol : /vol/booking?idBooking=int&lastName=string&firstName=string&places=int" +
                         "\n\n Liste de vols 2 : /vol2/list? " +
                         "\n Réservation vol 2 : /vol2/booking" +
                         //Hôtels
@@ -140,10 +140,10 @@ namespace Agregation.Controllers
         }
 
         [Route("vol/booking")]
-        public object call_ReserverVols_ws(int idBooking,string lastName, string firstName,int place)
+        public object call_ReserverVols_ws(int idBooking,string lastName, string firstName,int places)
         {
             FlyService_DoJM service = new FlyService_DoJM();
-            var response = service.ReservationVol(idBooking ,lastName,firstName,place);
+            var response = service.ReservationVol(idBooking ,lastName,firstName,places);
             return response;
         }
 
