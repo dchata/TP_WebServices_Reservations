@@ -260,6 +260,7 @@
     <Compile Include="IVoiture.cs" />
     <Compile Include="Messages\MessageRequest.cs" />
     <Compile Include="Messages\MessageResponse.cs" />
+    <Compile Include="Reservation.cs" />
     <Compile Include="ReservationVoiture.svc.cs">
       <DependentUpon>ReservationVoiture.svc</DependentUpon>
     </Compile>

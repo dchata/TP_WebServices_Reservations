@@ -17,6 +17,7 @@ namespace WebServices.ReservationVoiture.Soap
         private BaseAgence Agence;
         [Flags]
         public enum TypeVoiture { Citadine = 1, SUV = 2, Berline = 3, Sport = 4 };
+        private List<BaseVoiture> _ListeVoiture = new List<BaseVoiture>();
         #endregion
 
         #region Accesseurs
@@ -25,7 +26,11 @@ namespace WebServices.ReservationVoiture.Soap
             get { return Agence; }
             set { Agence = value; }
         }
-
+        public List<BaseVoiture> ListeVoiture
+        {
+            get { return _ListeVoiture; }
+            set { _ListeVoiture = value; }
+        }
 
         public DateTime dateDispoStart
         {
@@ -74,6 +79,10 @@ namespace WebServices.ReservationVoiture.Soap
         {
 
         }
+        public BaseVoiture(bool list)
+        {
+            GetBaseVoitures();
+        }
         public BaseVoiture(int id, string modele, bool dispo, TypeVoiture type, DateTime dateDispoStart, DateTime dateDispoEnd, BaseAgence agence)
         {
             Id = id;
@@ -104,7 +113,7 @@ namespace WebServices.ReservationVoiture.Soap
             listeVoitures.Add(new BaseVoiture(10, "Citroën C3", true, TypeVoiture.Citadine, Convert.ToDateTime("12/03/2018 00:00:00"), Convert.ToDateTime("12/03/2020 00:00:00"), agences.Where(a => a.id == 1).FirstOrDefault()));
             listeVoitures.Add(new BaseVoiture(11, "Citroën C5", true, TypeVoiture.Berline, Convert.ToDateTime("12/03/2018 00:00:00"), Convert.ToDateTime("12/03/2020 00:00:00"), agences.Where(a => a.id == 1).FirstOrDefault()));
             listeVoitures.Add(new BaseVoiture(12, "Citroën C1", true, TypeVoiture.Citadine, Convert.ToDateTime("12/03/2018 00:00:00"), Convert.ToDateTime("12/03/2020 00:00:00"), agences.Where(a => a.id == 1).FirstOrDefault()));
-
+            ListeVoiture = listeVoitures;
             return listeVoitures;
         }
     }
