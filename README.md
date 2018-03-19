@@ -7,7 +7,7 @@ API : 192.168.234.5:53365
 Elle est composée de 3 méthodes :
 - GetVoitures(username=string, password=string) : renvoie une liste de voitures disponibles
 - GetInfosVoiture(username=string, password=string, voitureId=int) : renvoie une voiture avec ses informations 
-- ReserverVoiture(username=string, password=string, voitureId=int, dateResaStart=YYY-MM-DD, dateResaEnd=YYY-MM-DD) : renvoie un boolean si voiture réservée ou non
+- ReserverVoiture(username=string, password=string, voitureId=int, dateResaStart=YYYY-MM-DD, dateResaEnd=YYYY-MM-DD) : renvoie un boolean si voiture réservée ou non
 
 Pour chaque méthode il faut saisir des identifiants :
 
