@@ -1,8 +1,8 @@
 # TP_WebServices_Reservations
 
-Cette API est en SOAP et a été développée en C#
+SOAP API en c# (192.168.234.5:53365/ReservationVoiture.svc)
 
-API : 192.168.234.5:53365
+Agrégation : la saisie des paramètres se fait dans l'url du client
 
 Elle est composée de 3 méthodes :
 - GetVoitures(username=string, password=string) : renvoie une liste de voitures disponibles
