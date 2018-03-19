@@ -42,7 +42,7 @@ namespace WebServices.ReservationVoiture.Soap
         public List<BaseUtilisateur> GetBaseUtilisateur()
         {
             var listeUtilisateur = new List<BaseUtilisateur>();
-            listeUtilisateur.Add(new BaseUtilisateur(1, "weba","services"));
+            listeUtilisateur.Add(new BaseUtilisateur(1, "weba", "services"));
             listeUtilisateur.Add(new BaseUtilisateur(2, "webb", "services"));
             listeUtilisateur.Add(new BaseUtilisateur(3, "webc", "services"));
             listeUtilisateur.Add(new BaseUtilisateur(4, "webd", "services"));
