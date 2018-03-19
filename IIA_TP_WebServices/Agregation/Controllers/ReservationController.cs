@@ -170,7 +170,7 @@ namespace Agregation.Controllers
         [Route("hotel/booking")]
         public object call_ReserverHotel_ws()
         {
-            return false;
+            return "Méthode non terminée";
         }
         #endregion
     }
