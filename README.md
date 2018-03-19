@@ -2,10 +2,12 @@
 
 Cette API est en SOAP et a été développée en C#
 
+API : 192.168.234.5:53365
+
 Elle est composée de 3 méthodes :
-- GetVoitures(username, password) : renvoie une liste de voitures disponibles
-- GetInfosVoiture(username, password, voitureId) : renvoie une voiture avec ses informations 
-- ReserverVoiture(username, password, voitureId, dateResaStart, dateResaEnd) : renvoie un boolean si voiture réservée ou non
+- GetVoitures(username=string, password=string) : renvoie une liste de voitures disponibles
+- GetInfosVoiture(username=string, password=string, voitureId=int) : renvoie une voiture avec ses informations 
+- ReserverVoiture(username=string, password=string, voitureId=int, dateResaStart=YYY-MM-DD, dateResaEnd=YYY-MM-DD) : renvoie un boolean si voiture réservée ou non
 
 Pour chaque méthode il faut saisir des identifiants :
 
