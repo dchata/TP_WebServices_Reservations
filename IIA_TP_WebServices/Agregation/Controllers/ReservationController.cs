@@ -114,9 +114,11 @@ namespace Agregation.Controllers
         }
 
         [Route("vol/booking")]
-        public object call_ReserverVols_ws()
+        public object call_ReserverVols_ws(int idBooking,string lastName, string firstName,int place)
         {
-            return false;
+            FlyService_DoJM service = new FlyService_DoJM();
+            var response = service.ReservationVol(idBooking ,lastName,firstName,place);
+            return response;
         }
 
         [Route("vol2/list")]
